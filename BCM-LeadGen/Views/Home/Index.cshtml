@@ -1,0 +1,104 @@
+﻿@model BCM_LeadGen.Models.LeadGeneration
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="grid-container1">
+    <!-- ด้านบน-->
+    <div class="gird1"></div>
+    <div class="gird1 ">
+        <div class="uppertext ">
+            <h2 style="color: white; margin-left: 5%; ">กรุณากรอกข้อมูลด้านล่างให้ครบถ้วนเพื่อให้เจ้าหน้าที่ติดต่อกลับ</h2>
+            <form asp-action="Index" style="padding-left: 5%;">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <input asp-for="Name" type="text" placeholder="ชื่อ*" style="height: 40px; width: 90%;border: white;">
+                    <span asp-validation-for="Name" style="color:#ff0000;display: inline-block;margin-top: 5px;"></span>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input asp-for="Surname" type="text" placeholder="นามสกุล*" style="height: 40px; width: 90%;border: white;">
+                    <span asp-validation-for="Surname" style="color:#ff0000;display: inline-block;margin-top: 5px;"></span>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input asp-for="LineId" type="text" placeholder="ID LINE" style="height: 40px; width: 90%;border: white;">
+
+                </div>
+                <br>
+                <div class="form-group">
+                    <input asp-for="Email" type="text" placeholder="อีเมล*" style="height: 40px; width: 90%;border: white;">
+                    <span asp-validation-for="Email" style="color:#ff0000;display: inline-block;margin-top: 5px;"></span>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input asp-for="Phone" type="text" placeholder="เบอร์โทรศัพท์*" style="height: 40px; width: 90%;border: white;">
+                    <span asp-validation-for="Phone" style="color:#ff0000;display: inline-block;margin-top: 5px;"></span>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input asp-for="CarModel" type="text" placeholder="รุ่นรถที่สนใจ*" style="height: 40px; width: 90%;border: white;">
+                    <span asp-validation-for="CarModel" style="color:#ff0000;display: inline-block;margin-top: 5px;"></span>
+                </div>
+
+                <p style="color: white;">ท่านมีแผนที่จะซื้อรถยนต์คันใหม่ภายในระยะเวลา*</p>
+                <div class="form-group">
+                    <select asp-for="NextCarTime" placeholder="กรุณาเลือก" style="height: 40px; width: 91%;border: white;">
+                        <option value="">กรุณาเลือก</option>
+                        <option value="น้อยกว่า 1 เดือน">น้อยกว่า 1 เดือน</option>
+                        <option value="ภายใน 3 เดือน">ภายใน 3 เดือน</option>
+                        <option value="ภายใน 6 เดือน">ภายใน 6 เดือน</option>
+                        <option value="มากกว่า 1 ปี">มากกว่า 1 ปี</option>
+                    </select>
+                    <span asp-validation-for="NextCarTime" style="color:#ff0000;display: inline-block;margin-top: 5px;"></span>
+                </div>
+
+                <p style="color: white;">สาขาที่สะดวกเข้ารับบริการ*</p>
+                <div class="form-group">
+                    <select asp-for="Branch" placeholder="กรุณาเลือก" style="height: 40px; width: 91%;border: white;">
+                        <option value="">กรุณาเลือก</option>
+                        <option value="วิภาวดี">วิภาวดี</option>
+                        <option value="บางแค">บางแค</option>
+                        <option value="เชียงใหม่">เชียงใหม่</option>
+                    </select>
+                    <span asp-validation-for="Branch" style="color:#ff0000;display: inline-block;margin-top: 5px;"></span>
+                </div>
+
+                <p style="color:white;">
+                    ภายใต้พระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 ในบางกรณี
+                    เราจำเป็นจะต้องขอความยินยอมในการใช้ "ข้อมูลส่วนบุคคล" ของท่าน <br>โปรดกดตกลงเพื่อให้ความยินยอมแก่เราในการพัฒนาประสบการณ์
+                    ตลอดจนตอบสนองสิ่งที่ท่านต้องการในอนาคตแก่ท่าน<br>
+                </p>
+                <label style="color:white;">
+                    <input type="checkbox" name="checkbox" value="value" onchange="isChecked(this, 'sub1')">
+                    ข้าพเจ้ายอมรับและอนุญาตให้ทาง บริษัท บาเซโลนา มอเตอร์ จำกัด เก็บรวบรวม ใช้ เปิดเผย และ/หรือส่งต่อ ข้อมูลส่วนบุคคลของข้าพเจ้า
+                </label>
+                <br><br>
+                <button type="submit" value="Submit" id="sub1" class="btn-submit" disabled="disabled">รับข้อเสนอ</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="gird1"></div>
+    <div class="gird1"></div>
+    <div class="gird1"></div>
+    <div class="gird1"> </div>
+</div>
+
+@{ 
+    if(@TempData["msg"]!=null)
+    {
+        <script>
+            alert('@TempData["msg"]')
+
+
+        </script>
+    }
+}
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+
+}
